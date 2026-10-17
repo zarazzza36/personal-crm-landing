@@ -1,0 +1,46 @@
+---
+import Car from "./Car.astro";
+import CtaButton from "./CtaButton.astro";
+import Header from "./Header.astro";
+import Road from "./Road.astro";
+import Truck from "./Truck.astro";
+---
+
+<section class="relative h-844 overflow-hidden lg:h-820">
+  <Header />
+
+  <div class="relative z-2 px-24 pt-28 lg:mx-auto lg:box-content lg:max-w-1280 lg:px-48 lg:pt-110">
+    <div class="flex flex-col gap-18 lg:max-w-600 lg:gap-28">
+      <h1
+        class="font-display text-29 leading-h1 font-bold tracking-heading text-balance lg:text-48 lg:leading-h1-lg lg:tracking-heading-lg xl:text-60"
+      >
+        Своя логистическая база <span class="text-accent">всегда под рукой!</span>
+      </h1>
+      <p class="text-15 leading-body text-pretty text-muted lg:max-w-500 lg:text-18 lg:leading-lead-lg">
+        Все контакты и заметки в одном месте. Больше никакой путаницы при организации рейсов
+      </p>
+      <CtaButton class="mt-8 lg:mt-12" />
+    </div>
+  </div>
+
+  <!-- Illustration: bottom of the screen on mobile, right half on desktop -->
+  <div class="absolute inset-x-0 bottom-0 h-360 overflow-hidden lg:top-0 lg:left-1/2 lg:h-auto" aria-hidden="true">
+    <Road
+      orientation="vertical"
+      class="-top-150 left-1/2 -ml-120 h-760 w-240 -rotate-14 lg:-top-200 lg:-ml-110 lg:h-1300 lg:w-300"
+    >
+      <Car orientation="vertical" class="top-165 left-44 lg:top-420 lg:left-56" />
+      <Truck orientation="vertical" class="top-300 left-150 lg:top-600 lg:left-190" />
+    </Road>
+    <div class="absolute inset-x-0 top-0 h-90 bg-linear-to-b from-ink to-ink/0 lg:h-160"></div>
+    <div class="absolute inset-y-0 left-0 w-120 bg-linear-to-r from-ink to-ink/0 max-lg:hidden"></div>
+
+    <div
+      class="absolute top-150 left-24 box-content flex w-150 flex-col gap-4 rounded-12 bg-paper px-14 py-12 text-ink shadow-driver lg:top-470 lg:left-60 lg:w-200 lg:gap-6 lg:rounded-14 lg:px-18 lg:py-16 lg:shadow-driver-lg"
+    >
+      <div class="text-10 tracking-label text-card-label lg:text-11">ВОДИТЕЛЬ</div>
+      <div class="font-display text-13 font-medium lg:text-16">Смирнов А. В.</div>
+      <div class="text-11 lg:text-13">★ 4.9 · надёжный</div>
+    </div>
+  </div>
+</section>

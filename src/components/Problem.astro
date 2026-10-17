@@ -1,0 +1,53 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+// Rotate first, then shift along the rotated axis, as in the design
+const channels = [
+  { label: "телефон", tilt: "-rotate-3" },
+  { label: "мессенджеры", tilt: "transform-[rotate(2deg)_translateY(6px)]" },
+  { label: "почта", tilt: "transform-[rotate(-1deg)_translateY(-2px)]" },
+  { label: "логистическая платформа", tilt: "transform-[rotate(4deg)_translateY(4px)]" },
+];
+
+const problems = [
+  "Контакты водителей разбросаны по телефону, мессенджерам, почте, логистической платформе",
+  "Через полгода связь и наработки с человеком теряются",
+  "Рейтинг контрагентов забывается",
+];
+---
+
+<section class="border-t border-paper/12">
+  <div
+    class="flex flex-col gap-28 px-24 pt-72 pb-64 lg:mx-auto lg:box-content lg:grid lg:max-w-1280 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-64 lg:px-48 lg:py-120"
+  >
+    <div class="flex flex-col gap-28 lg:gap-36">
+      <SectionHeading title="Проблема" index="01" />
+      <ul class="flex flex-wrap gap-8 lg:max-w-340 lg:gap-10">
+        {
+          channels.map(({ label, tilt }) => (
+            <li
+              class:list={[
+                "rounded-full border border-dashed border-paper/35 px-12 py-8 text-12 text-muted lg:px-14 lg:py-9 lg:text-13",
+                tilt,
+              ]}
+            >
+              {label}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Mobile: rows with the number on the left; desktop: three columns -->
+    <ol class="flex flex-col lg:grid lg:grid-cols-3 lg:self-start lg:border-y lg:border-paper/12">
+      {
+        problems.map((text, i) => (
+          <li class="grid grid-cols-[36px_1fr] gap-12 border-t border-paper/12 py-20 last:border-b lg:flex lg:flex-col lg:gap-40 lg:border-t-0 lg:px-28 lg:pt-32 lg:pb-40 lg:first:pl-0 lg:last:border-b-0 lg:last:pr-0 lg:not-first:border-l">
+            <span class="text-12 text-accent lg:text-13">{String(i + 1).padStart(2, "0")}</span>
+            <p class="text-15 leading-body text-pretty lg:text-17">{text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+interface Props {
+  orientation: "vertical" | "horizontal";
+  /** Size, position and tilt of the road */
+  class?: string;
+}
+
+const { orientation, class: className } = Astro.props;
+---
+
+<div class:list={["absolute bg-asphalt", className]}>
+  {
+    orientation === "vertical" ? (
+      <>
+        <div class="absolute inset-y-0 left-10 w-3 bg-curb lg:left-12 lg:w-4" />
+        <div class="absolute inset-y-0 right-10 w-3 bg-curb lg:right-12 lg:w-4" />
+        <div class="dashes dashes-vertical absolute inset-y-0 left-1/2 -ml-2 w-4 lg:-ml-2.5 lg:w-5" />
+      </>
+    ) : (
+      <>
+        <div class="absolute inset-x-0 top-9 h-3 bg-curb lg:top-11 lg:h-4" />
+        <div class="absolute inset-x-0 bottom-9 h-3 bg-curb lg:bottom-11 lg:h-4" />
+        <div class="dashes dashes-horizontal absolute inset-x-0 top-1/2 -mt-2 h-4 lg:-mt-2.5 lg:h-5" />
+      </>
+    )
+  }
+  <slot />
+</div>
+
+<style>
+  @reference "../styles/global.css";
+
+  /* Center line: dash length and dash + gap period */
+  .dashes {
+    --dash: 30px;
+    --period: 62px;
+
+    @variant lg {
+      --dash: 38px;
+      --period: 78px;
+    }
+  }
+
+  .dashes-vertical {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--color-accent) 0 var(--dash),
+      transparent var(--dash) var(--period)
+    );
+  }
+
+  .dashes-horizontal {
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--color-accent) 0 var(--dash),
+      transparent var(--dash) var(--period)
+    );
+  }
+</style>

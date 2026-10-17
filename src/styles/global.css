@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./fonts.css";
+
+/* Design references are not part of the site */
+@source not "../../design";
+
+@layer base {
+  html {
+    /* The design relies on the browser default line height */
+    line-height: normal;
+    background-color: var(--color-ink);
+  }
+}
+
+/* Page background: dark with a thin square grid */
+@utility bg-grid {
+  background-color: var(--color-ink);
+  background-image:
+    linear-gradient(var(--color-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+
+  @variant lg {
+    background-size: var(--grid-size-lg) var(--grid-size-lg);
+  }
+}

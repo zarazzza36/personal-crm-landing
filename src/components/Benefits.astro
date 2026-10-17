@@ -1,0 +1,31 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+const benefits = [
+  { text: "Помните контекст с каждым контрагентом", tile: "bg-accent text-ink", number: "" },
+  { text: "Возвращаетесь к договоренностям вовремя", tile: "bg-paper text-ink", number: "" },
+  { text: "Ведете переговоры, полностью погруженные в контекст", tile: "bg-asphalt text-paper", number: "text-accent" },
+];
+---
+
+<section class="border-t border-paper/12">
+  <div class="flex flex-col gap-28 px-24 pt-72 pb-64 lg:mx-auto lg:box-content lg:max-w-1280 lg:gap-56 lg:px-48 lg:py-120">
+    <SectionHeading title="Выгода" index="03" />
+
+    <ol class="flex flex-col gap-10 lg:grid lg:grid-cols-3 lg:gap-16">
+      {
+        benefits.map(({ text, tile, number }, i) => (
+          <li
+            class:list={[
+              "flex flex-col gap-14 rounded-16 px-20 py-22 lg:min-h-240 lg:justify-between lg:gap-40 lg:rounded-20 lg:px-28 lg:py-32",
+              tile,
+            ]}
+          >
+            <span class:list={["text-12 lg:text-13", number]}>{String(i + 1).padStart(2, "0")}</span>
+            <p class="font-display text-18 leading-tile font-medium text-pretty lg:text-20 xl:text-24">{text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

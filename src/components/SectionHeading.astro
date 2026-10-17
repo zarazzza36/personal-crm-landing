@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  /** Section number, e.g. "01" */
+  index: string;
+}
+
+const { title, index } = Astro.props;
+---
+
+<!-- Mobile: title left, number right; desktop: number above the title -->
+<div class="flex items-baseline justify-between lg:flex-col-reverse lg:items-start lg:justify-start lg:gap-16">
+  <h2 class="font-display text-28 font-bold tracking-heading lg:text-44">{title}</h2>
+  <span class="text-11 tracking-label text-dim lg:text-12">[ {index} ]</span>
+</div>

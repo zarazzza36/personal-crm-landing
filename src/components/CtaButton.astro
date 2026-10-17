@@ -1,0 +1,33 @@
+---
+import { APP_URL } from "../config";
+
+interface Props {
+  /** solid: big yellow button; outline: small header button */
+  variant?: "solid" | "outline";
+  class?: string;
+}
+
+const { variant = "solid", class: className } = Astro.props;
+
+const variants = {
+  solid:
+    "h-56 justify-between rounded-14 bg-accent px-22 text-15 text-ink lg:h-64 lg:w-380 lg:rounded-16 lg:px-26 lg:text-17",
+  // content-box: the design adds the 1px border on top of the 44px height
+  outline: "box-content h-44 gap-12 rounded-12 border border-paper/30 px-20 text-13",
+};
+const arrows = {
+  solid: "text-20 lg:text-22",
+  outline: "",
+};
+---
+
+<a
+  href={APP_URL}
+  class:list={[
+    "flex items-center font-display font-medium hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent",
+    variants[variant],
+    className,
+  ]}
+>
+  Перейти в приложение<span class={arrows[variant]} aria-hidden="true">→</span>
+</a>

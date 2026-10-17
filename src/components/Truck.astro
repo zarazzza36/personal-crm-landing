@@ -1,0 +1,66 @@
+---
+interface Props {
+  /** vertical: drives up, cab on top; horizontal: drives right, cab on the right */
+  orientation: "vertical" | "horizontal";
+  /** Position on the road */
+  class?: string;
+}
+
+const { orientation, class: className } = Astro.props;
+---
+
+{
+  orientation === "vertical" ? (
+    <div class:list={["absolute h-250 w-48 lg:h-312 lg:w-60", className]}>
+      <div class="absolute top-14 -left-6 h-12 w-7 rounded-2 bg-tyre lg:top-18 lg:-left-8 lg:h-15 lg:w-9" />
+      <div class="absolute top-14 -right-6 h-12 w-7 rounded-2 bg-tyre lg:top-18 lg:-right-8 lg:h-15 lg:w-9" />
+      <div class="absolute top-0 left-2 h-50 w-44 rounded-t-11 rounded-b-4 bg-accent shadow-hard-6-7 lg:left-3 lg:h-62 lg:w-54 lg:rounded-t-14 lg:rounded-b-5 lg:shadow-hard-8-9">
+        <div class="absolute inset-x-4 top-6 h-12 rounded-4 bg-glass lg:inset-x-5 lg:top-7 lg:h-15 lg:rounded-5" />
+        <div class="absolute inset-x-7 top-24 h-20 rounded-3 bg-black/14 lg:inset-x-9 lg:top-30 lg:h-25 lg:rounded-4" />
+      </div>
+      <div class="absolute top-50 left-18 h-6 w-12 bg-hitch lg:top-62 lg:left-22 lg:h-8 lg:w-16" />
+      <div class="ribs ribs-vertical absolute top-56 left-0 h-194 w-48 rounded-3 bg-trailer shadow-hard-6-8 lg:top-70 lg:h-242 lg:w-60 lg:rounded-4 lg:shadow-hard-8-10" />
+    </div>
+  ) : (
+    <div class:list={["absolute h-48 w-250 lg:h-60 lg:w-312", className]}>
+      <div class="ribs ribs-horizontal absolute top-0 left-0 h-48 w-194 rounded-3 bg-trailer shadow-hard-6-7 lg:h-60 lg:w-242 lg:rounded-4 lg:shadow-hard-8-9" />
+      <div class="absolute top-18 left-194 h-12 w-6 bg-hitch lg:top-22 lg:left-242 lg:h-16 lg:w-8" />
+      <div class="absolute top-2 left-200 h-44 w-50 rounded-l-4 rounded-r-11 bg-accent shadow-hard-6-7 lg:top-3 lg:left-250 lg:h-54 lg:w-62 lg:rounded-l-5 lg:rounded-r-14 lg:shadow-hard-8-9">
+        <div class="absolute inset-y-4 right-6 w-12 rounded-4 bg-glass lg:inset-y-5 lg:right-7 lg:w-15 lg:rounded-5" />
+        <div class="absolute inset-y-7 left-6 w-20 rounded-3 bg-black/14 lg:inset-y-9 lg:left-8 lg:w-25 lg:rounded-4" />
+      </div>
+      <div class="absolute -top-5 left-226 h-7 w-12 rounded-2 bg-tyre lg:-top-6 lg:left-282 lg:h-9 lg:w-15" />
+      <div class="absolute top-46 left-226 h-7 w-12 rounded-2 bg-tyre lg:top-57 lg:left-282 lg:h-9 lg:w-15" />
+    </div>
+  )
+}
+
+<style>
+  @reference "../styles/global.css";
+
+  /* Trailer ribs: 1px line after every --rib pixels */
+  .ribs {
+    --rib: 18px;
+    --rib-color: --alpha(var(--color-black) / 7%);
+
+    @variant lg {
+      --rib: 22px;
+    }
+  }
+
+  .ribs-vertical {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0 var(--rib),
+      var(--rib-color) var(--rib) calc(var(--rib) + 1px)
+    );
+  }
+
+  .ribs-horizontal {
+    background-image: repeating-linear-gradient(
+      to right,
+      transparent 0 var(--rib),
+      var(--rib-color) var(--rib) calc(var(--rib) + 1px)
+    );
+  }
+</style>

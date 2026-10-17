@@ -1,0 +1,50 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+// pretty: balanced line breaks, used only where the design has them
+//   keeps the dash on the same line as the word before it
+const features = [
+  { text: "Общий список контактов" },
+  { text: "В карточке полная информация — номер, ФИО, заметки об общей работе", pretty: true },
+  { text: "После разговора — выжимка в карточку" },
+  { text: "Нужен человек — нашли за секунду" },
+  { text: "Единый рейтинг надежности водителей и контрагентов" },
+];
+---
+
+<section class="border-t border-paper/12">
+  <div class="flex flex-col gap-28 px-24 pt-72 pb-64 lg:mx-auto lg:box-content lg:max-w-1280 lg:gap-56 lg:px-48 lg:py-120">
+    <SectionHeading title="Решение" index="02" />
+
+    <div class="flex flex-col gap-28 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start lg:gap-64">
+      <!-- Example contact card -->
+      <div
+        class="flex flex-col gap-16 rounded-18 bg-paper p-20 text-ink shadow-card lg:-rotate-[1.5deg] lg:gap-22 lg:rounded-22 lg:p-28 lg:shadow-card-lg"
+      >
+        <div class="flex items-center justify-between">
+          <div class="text-10 tracking-label text-card-label lg:text-11">КАРТОЧКА КОНТАКТА</div>
+          <div class="rounded-full bg-ink px-10 py-4 text-11 text-accent lg:px-12 lg:py-5 lg:text-12">★ 4.9</div>
+        </div>
+        <div class="flex flex-col gap-4 lg:gap-6">
+          <div class="font-display text-18 font-medium lg:text-24 lg:leading-name">Смирнов Алексей Викторович</div>
+          <div class="text-13 text-card-text lg:text-15">+7 910 249-00-00</div>
+        </div>
+        <div class="flex flex-col gap-6 rounded-10 bg-card-sub px-14 py-12 lg:gap-8 lg:rounded-12 lg:px-18 lg:py-16">
+          <div class="text-10 tracking-label text-card-label lg:text-11">ВЫЖИМКА ПОСЛЕ РАЗГОВОРА</div>
+          <div class="text-13 leading-note lg:text-15">попросил аванс 3.000 рублей в счет рейса Воронеж-Москва</div>
+        </div>
+      </div>
+
+      <ul class="flex flex-col">
+        {
+          features.map(({ text, pretty }) => (
+            <li class="grid grid-cols-[36px_1fr] gap-12 border-t border-paper/12 py-18 last:border-b lg:grid-cols-[44px_1fr] lg:py-22">
+              <span class="mt-6 size-10 rounded-2 bg-accent lg:mt-7 lg:size-12" />
+              <p class:list={["text-15 leading-body lg:text-18", { "text-pretty": pretty }]}>{text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

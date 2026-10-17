@@ -1,0 +1,26 @@
+---
+import Base from "../layouts/Base.astro";
+import Benefits from "../components/Benefits.astro";
+import Cta from "../components/Cta.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import Problem from "../components/Problem.astro";
+import Solution from "../components/Solution.astro";
+---
+
+<Base
+  title="Волки с Лизюкова"
+  description="Все контакты и заметки в одном месте. Больше никакой путаницы при организации рейсов"
+>
+  <!-- Mobile layout keeps a narrow column; desktop sections span the full width -->
+  <div class="mx-auto max-w-560 overflow-x-clip lg:max-w-none">
+    <main>
+      <Hero />
+      <Problem />
+      <Solution />
+      <Benefits />
+      <Cta />
+    </main>
+    <Footer />
+  </div>
+</Base>

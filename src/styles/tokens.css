@@ -1,0 +1,105 @@
+/*
+ * Design tokens: the only source of colors, fonts and spacing.
+ * Values come from design/README.md and the reference HTML in design/.
+ *
+ * Tailwind defaults are reset, so only the tokens below can be used.
+ * Spacing unit is 1px: p-24 = 24px, w-240 = 240px, matching the design numbers.
+ */
+@theme static {
+  --color-*: initial;
+  --color-ink: #161719;
+  --color-paper: #f2f0ea;
+  --color-accent: oklch(0.86 0.17 95);
+  --color-muted: #c9c6bd;
+  --color-dim: #9a9890;
+  --color-asphalt: #2b2c30;
+  --color-curb: #d8d5cc;
+  --color-card-sub: #e6e3da;
+  --color-card-label: #6b6960;
+  --color-card-text: #4a4840;
+  --color-trailer: #eeebe3;
+  --color-car: #e9e6de;
+  --color-glass: #1d2a33;
+  --color-glass-car: #20262c;
+  --color-tyre: #0d0d0d;
+  --color-hitch: #111111;
+  --color-black: #000000;
+  --color-grid-line: rgb(255 255 255 / 0.04);
+
+  --font-*: initial;
+  --font-display: "Unbounded", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --text-*: initial;
+  --text-10: 10px;
+  --text-11: 11px;
+  --text-12: 12px;
+  --text-13: 13px;
+  --text-15: 15px;
+  --text-16: 16px;
+  --text-17: 17px;
+  --text-18: 18px;
+  --text-20: 20px;
+  --text-22: 22px;
+  --text-24: 24px;
+  --text-28: 28px;
+  --text-29: 29px;
+  --text-44: 44px;
+  --text-48: 48px;
+  --text-56: 56px;
+  --text-60: 60px;
+
+  --leading-*: initial;
+  --leading-h1: 1.12;
+  --leading-h1-lg: 1.08;
+  --leading-cta: 1.15;
+  --leading-cta-lg: 1.1;
+  --leading-body: 1.5;
+  --leading-lead-lg: 1.55;
+  --leading-tile: 1.3;
+  --leading-note: 1.45;
+  --leading-name: 1.2;
+
+  --tracking-*: initial;
+  --tracking-heading: -0.01em;
+  --tracking-heading-lg: -0.02em;
+  --tracking-logo: 0.02em;
+  --tracking-footer: 0.06em;
+  --tracking-label: 0.08em;
+
+  --spacing: 1px;
+  --grid-size: 39px;
+  --grid-size-lg: 48px;
+
+  --radius-*: initial;
+  --radius-2: 2px;
+  --radius-3: 3px;
+  --radius-4: 4px;
+  --radius-5: 5px;
+  --radius-9: 9px;
+  --radius-10: 10px;
+  --radius-11: 11px;
+  --radius-12: 12px;
+  --radius-14: 14px;
+  --radius-16: 16px;
+  --radius-18: 18px;
+  --radius-20: 20px;
+  --radius-22: 22px;
+
+  --shadow-*: initial;
+  --shadow-driver: 0 10px 30px rgb(0 0 0 / 0.4);
+  --shadow-driver-lg: 0 14px 40px rgb(0 0 0 / 0.45);
+  --shadow-card: 0 16px 40px rgb(0 0 0 / 0.45);
+  --shadow-card-lg: 0 20px 50px rgb(0 0 0 / 0.45);
+  /* Hard shadows of the vehicles, named by offset */
+  --shadow-hard-5-6: 5px 6px 0 rgb(0 0 0 / 0.35);
+  --shadow-hard-6-7: 6px 7px 0 rgb(0 0 0 / 0.35);
+  --shadow-hard-6-8: 6px 8px 0 rgb(0 0 0 / 0.35);
+  --shadow-hard-8-9: 8px 9px 0 rgb(0 0 0 / 0.35);
+  --shadow-hard-8-10: 8px 10px 0 rgb(0 0 0 / 0.35);
+
+  /* lg = desktop layout; xl = full desktop design width */
+  --breakpoint-*: initial;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 75rem;
+}

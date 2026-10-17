@@ -1,0 +1,31 @@
+---
+import Car from "./Car.astro";
+import CtaButton from "./CtaButton.astro";
+import Road from "./Road.astro";
+import Truck from "./Truck.astro";
+---
+
+<section class="border-t border-paper/12">
+  <div
+    class="flex flex-col gap-28 px-24 pt-72 lg:mx-auto lg:box-content lg:max-w-1280 lg:flex-row lg:items-end lg:justify-between lg:gap-48 lg:px-48 lg:pt-120"
+  >
+    <h2
+      class="font-display text-29 leading-cta font-bold tracking-heading text-balance lg:max-w-720 lg:text-56 lg:leading-cta-lg lg:tracking-heading-lg"
+    >
+      Веди CRM и будь <span class="text-accent">всегда во всеоружии!</span>
+    </h2>
+    <CtaButton class="lg:flex-none" />
+  </div>
+
+  <div class="relative mt-28 h-260 overflow-hidden lg:mt-0 lg:h-340" aria-hidden="true">
+    <Road
+      orientation="horizontal"
+      class="top-90 -right-40 -left-40 h-120 -rotate-8 lg:top-120 lg:-right-80 lg:-left-80 lg:h-150 lg:-rotate-4"
+    >
+      <Truck orientation="horizontal" class="top-66 left-150 lg:top-84 lg:right-420 lg:left-auto" />
+      <Car orientation="horizontal" class="top-20 left-380 max-lg:hidden" />
+    </Road>
+    <div class="absolute inset-y-0 left-0 w-90 bg-linear-to-r from-ink to-ink/0 lg:w-240"></div>
+    <div class="absolute inset-y-0 right-0 w-240 bg-linear-to-l from-ink to-ink/0 max-lg:hidden"></div>
+  </div>
+</section>
