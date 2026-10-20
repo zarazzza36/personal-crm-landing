@@ -1,0 +1,63 @@
+# Every push to main: build the landing and upload dist/ to the server.
+# The server side is prepared once by deploy/server/setup-landing.sh.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One deploy at a time: a newer push waits for the running one to finish.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SITE_URL: https://volki-lzkv.ru/
+      DEPLOY_USER: landing
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 12.10.1
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm build
+
+      - name: Upload dist/ to the server
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+        run: |
+          install -d -m 0700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 0600 ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # The key may only rsync into the site folder (rrsync on the server),
+          # so the remote path is relative to that folder.
+          rsync -rlpt --delete --delay-updates --chmod=D755,F644 --itemize-changes \
+            -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes" \
+            dist/ "$DEPLOY_USER@$DEPLOY_HOST:"
+          rm -f ~/.ssh/deploy_key
+
+      - name: Check that the site answers 200 with the new version
+        run: |
+          curl -fsS --retry 3 --retry-all-errors -o served.html \
+            -w "$SITE_URL -> %{http_code}\n" "$SITE_URL"
+          cmp served.html dist/index.html
+          echo "The server gives out exactly the index.html built in this run"
