@@ -1,0 +1,214 @@
+<!doctype html>
+<!--
+  Link preview image (og:image) for the landing and the app, 1200x630.
+  public/og-image.png is a screenshot of this page; the app keeps a copy as
+  src/app/opengraph-image.png. To remake it, run Chrome from the repo root
+  (<repo> is the repo's full path):
+
+  chrome --headless=new --hide-scrollbars --force-device-scale-factor=1
+    --window-size=1200,630 --virtual-time-budget=3000
+    --screenshot=public/og-image.png file:///<repo>/design/og-image.html
+
+  Colors and sizes are the desktop ones from src/styles/tokens.css and the
+  hero's Road, Car and Truck components.
+-->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: "Unbounded";
+    font-weight: 500 700;
+    src: url("../src/assets/fonts/unbounded-cyrillic.woff2") format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  }
+  @font-face {
+    font-family: "Unbounded";
+    font-weight: 500 700;
+    src: url("../src/assets/fonts/unbounded-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "IBM Plex Mono";
+    font-weight: 400;
+    src: url("../src/assets/fonts/ibm-plex-mono-400-cyrillic.woff2") format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  }
+  @font-face {
+    font-family: "IBM Plex Mono";
+    font-weight: 400;
+    src: url("../src/assets/fonts/ibm-plex-mono-400-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  :root {
+    --ink: #161719;
+    --paper: #f2f0ea;
+    --accent: oklch(0.86 0.17 95);
+    --dim: #9a9890;
+    --asphalt: #2b2c30;
+    --curb: #d8d5cc;
+    --trailer: #eeebe3;
+    --car: #e9e6de;
+    --glass: #1d2a33;
+    --glass-car: #20262c;
+    --tyre: #0d0d0d;
+    --hitch: #111111;
+    --grid-line: rgb(255 255 255 / 0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+
+  html, body { width: 1200px; height: 630px; }
+
+  body {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--ink);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    color: var(--paper);
+    font-family: "IBM Plex Mono", monospace;
+  }
+
+  /* Text column */
+  .text {
+    position: absolute;
+    z-index: 2;
+    top: 64px;
+    left: 72px;
+    bottom: 64px;
+    width: 620px;
+    display: flex;
+    flex-direction: column;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: 0.02em;
+  }
+  .logo-mark {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    background: var(--accent);
+  }
+  h1 {
+    margin-top: auto;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+  h1 span { color: var(--accent); }
+  .label {
+    margin-top: 32px;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    color: var(--dim);
+  }
+
+  /* Illustration: the hero's road with a car and a truck */
+  .scene {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 640px;
+    right: 0;
+    overflow: hidden;
+  }
+  .road {
+    position: absolute;
+    top: -330px;
+    left: 160px;
+    width: 300px;
+    height: 1300px;
+    background: var(--asphalt);
+    transform: rotate(-14deg);
+  }
+  .curb-l, .curb-r { position: absolute; top: 0; bottom: 0; width: 4px; background: var(--curb); }
+  .curb-l { left: 12px; }
+  .curb-r { right: 12px; }
+  .dashes {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 5px;
+    margin-left: -2.5px;
+    background-image: repeating-linear-gradient(to bottom, var(--accent) 0 38px, transparent 38px 78px);
+  }
+
+  .car { position: absolute; top: 470px; left: 56px; width: 38px; height: 72px; }
+  .car-body { position: absolute; inset: 0; border-radius: 11px; background: var(--car); box-shadow: 6px 8px 0 rgb(0 0 0 / 0.35); }
+  .car-front { position: absolute; left: 5px; right: 5px; top: 12px; height: 13px; border-radius: 4px; background: var(--glass-car); }
+  .car-rear { position: absolute; left: 5px; right: 5px; bottom: 10px; height: 9px; border-radius: 3px; background: var(--glass-car); }
+
+  .truck { position: absolute; top: 620px; left: 190px; width: 60px; height: 312px; }
+  .tyre { position: absolute; top: 18px; width: 9px; height: 15px; border-radius: 2px; background: var(--tyre); }
+  .tyre-l { left: -8px; }
+  .tyre-r { right: -8px; }
+  .cab {
+    position: absolute;
+    top: 0;
+    left: 3px;
+    width: 54px;
+    height: 62px;
+    border-radius: 14px 14px 5px 5px;
+    background: var(--accent);
+    box-shadow: 8px 9px 0 rgb(0 0 0 / 0.35);
+  }
+  .cab-glass { position: absolute; left: 5px; right: 5px; top: 7px; height: 15px; border-radius: 5px; background: var(--glass); }
+  .cab-roof { position: absolute; left: 9px; right: 9px; top: 30px; height: 25px; border-radius: 4px; background: rgb(0 0 0 / 0.14); }
+  .hitch { position: absolute; top: 62px; left: 22px; width: 16px; height: 8px; background: var(--hitch); }
+  .trailer {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 60px;
+    height: 242px;
+    border-radius: 4px;
+    background-color: var(--trailer);
+    background-image: repeating-linear-gradient(to bottom, transparent 0 22px, rgb(0 0 0 / 0.07) 22px 23px);
+    box-shadow: 8px 10px 0 rgb(0 0 0 / 0.35);
+  }
+</style>
+</head>
+<body>
+  <div class="scene">
+    <div class="road">
+      <div class="curb-l"></div>
+      <div class="curb-r"></div>
+      <div class="dashes"></div>
+      <div class="car">
+        <div class="car-body"></div>
+        <div class="car-front"></div>
+        <div class="car-rear"></div>
+      </div>
+      <div class="truck">
+        <div class="tyre tyre-l"></div>
+        <div class="tyre tyre-r"></div>
+        <div class="cab">
+          <div class="cab-glass"></div>
+          <div class="cab-roof"></div>
+        </div>
+        <div class="hitch"></div>
+        <div class="trailer"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text">
+    <div class="logo"><span class="logo-mark"></span>Волки с Лизюкова</div>
+    <h1>Своя логистическая база <span>всегда<br>под рукой!</span></h1>
+    <div class="label">ДЛЯ ЛОГИСТОВ</div>
+  </div>
+</body>
+</html>
